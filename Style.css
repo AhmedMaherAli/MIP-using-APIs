@@ -1,25 +1,46 @@
 .container{
     
     text-align:left;
+    margin-top:5%;
+    margin-left:5%;
+    margin-right:5%;
+    font-weight: 300;
 }
 .header{
-    
+
+    border: 2px solid black;
+    border-radius:20px;
     text-align:center;
+    background-color: #37041B;        
+    font-weight: 300;
 }
 .container h3{
+    font-weight: normal;
     color: black;
+    text-decoration: underline;
 }
 img
 {
+    border: 2px solid black;
+    border-radius:20px;  
     float: left;
 }
 .container h4{
     color: #062272;
 }
 #MovieInfo{
+
+    border: 2px solid black;
+    border-radius:20px;
+    width:26%;
+    height: 500px;
     margin-left:76%;
 }
- 
+
+p{
+    color: yellowgreen;
+}
+
 .WikiInfo{
     margin-top:20%;
     margin-bottom: 20%;
@@ -35,7 +56,31 @@ button{
     cursor: pointer;
     border: 2px solid black;
     margin-left:23%;
+    transition: 0.25s ease-in-out;
+    width: 200px;
+    height: 35px;
+    font-size: 20px;
+    color: white;
+    background-color: #A04000;
+    outline: none;
+}
+button:hover{
+    background-color: black;
+}
+.CFInfo img{
+    width: 1000px;
+    height: 800px;
+    
+    border: 2px solid black;
+    border-radius:20px;
+}
+.CFInfo p{
+    
+    color: yellowgreen;
 }
 body {
-    background-size: 1200px 800px;
+      background-image: url("bg3.jpg");
+    /*background-repeat: no-repeat;*/
+    /*background-attachment: fixed;*/
+      background-size: 1200px 800px;
   }

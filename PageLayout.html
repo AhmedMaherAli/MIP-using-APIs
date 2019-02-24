@@ -112,13 +112,13 @@
                         }
                         );
                     }
-                    function CreateWikipidiaAccount()
+                    function wikiLogin()
                     {
                         $.ajax(
                         {
                             method: "POST",
                             url: "https://mediawiki.org/w/api.php",
-                            data: {'action': "createaccount",
+                            data: {'action': "login",
                                     'logintoken': "975c2c751c9420816c2d6246ad7d91075c6fe33b+\\",
                                     'username': 'WTWADMIN',
                                     'password': 'WTW666',
@@ -135,10 +135,7 @@
 		</script>
         </body>
 
-    </html>
-
-
-        
+    </html>        
     <!--
         https://en.wikipedia.org/w/api.php?action=query&meta=tokens&format=json&type=login
     {
