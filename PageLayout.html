@@ -44,56 +44,98 @@
                   </div>
             </div>
 
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-                <script>
-
-		function CreateWikipidiaAccount()
-                        {
-                            $.ajax(
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+            <script>
+                    var x = document.getElementById("frm1");
+                    var text = "";
+                    function GetMovieName() {
+                            var i;
+                            for (i = 0; i < x.length ;i++) 
                             {
-                                method: "POST",
-                                url: "https://mediawiki.org/w/api.php",
-                                data: {'action': "createaccount",
-                                        'createtoken': "49a82f8a56dcff3c5af86c5248f317d15c6fe650+\\",
-                                        'username': 'WTWADMIN',
-                                        'password': 'WTW666',
-                                        'retype': 'WTW666',
-                                        'createreturnurl': "https://en.wikipedia.org",
-                                        'format': "json"
-                                },
-                                success: function(result) {
-                                  console.log(result)                            
-                                },
+                                text += x.elements[i].value;
                             }
-                            );
-                        }
-                        function CreateWikipidiaAccount()
-                        {
-                            $.ajax(
+                            document.getElementById("SearchInput").value="";
+                            console.log(text);
+                            apicall();
+                    }
+                    function apicall(){
+                            $.getJSON("http://www.omdbapi.com/?apikey=2cb2be10&t="+ encodeURI(text)).then(function(response){
+                            var image=response.Poster;
+                            var plot=response.Plot;
+                            var rate=response.imdbRating;
+                            var year=response.Year;
+                            var movieRunTime=response.Runtime;
+                            document.getElementById("Plot").innerHTML="<h4>Plot:</h4>"+plot;
+                            document.getElementById("MovieRate").innerHTML="<h4>MovieRate:</h4>"+rate;
+                            document.getElementById("Year").innerHTML="<h4>Year:</h4>"+year;
+                            document.getElementById("RunTime").innerHTML="<h4>RunTime:</h4>"+movieRunTime;
+                            if(image!=="N/A")
                             {
-                                method: "POST",
-                                url: "https://mediawiki.org/w/api.php",
-                                data: {'action': "createaccount",
-                                        'logintoken': "975c2c751c9420816c2d6246ad7d91075c6fe33b+\\",
-                                        'username': 'WTWADMIN',
-                                        'password': 'WTW666',
-                                        'retype': 'WTW666',
-                                        'loginreturnurl': "https://en.wikipedia.org",
-                                        'format': "json"
-                                },
-                                success: function(result) {
-                                  console.log(result)                            
-                                },
+                                $('#Mpstr').attr('src',image);
                             }
-                            );
+                            else
+                            {
+                                $.getJSON("https://www.myapifilms.com/imdb/idIMDB?origin=*&token=bc800232-87a2-4a22-998a-f370572f4ae0http&title="+ encodeURI(text)).then(function(tempresponse){
+                                image=tempresponse.urlPoster;
+                                });
+                                if(image!=="N/A")
+                                {
+                                     $('#Mpstr').attr('src',image);
+                                }
+                            }
+                            });
+                        $.getJSON("https://en.wikipedia.org/w/api.php?action=query&prop=extracts&format=json&exintro=&origin=*&titles="+ encodeURI(text)).then(function(response){
+                             var pageid = Object.keys(response.query.pages)[0];
+                            console.log(response.query.pages[pageid].extract);
+                                var t=response.query.pages[pageid].extract;
+                            document.getElementById("info").innerHTML=t;
+                            });
+                        
+                     }
+                    function CreateWikipidiaAccount()
+                    {
+                        $.ajax(
+                        {
+                            method: "POST",
+                            url: "https://mediawiki.org/w/api.php",
+                            data: {'action': "createaccount",
+                                    'createtoken': "49a82f8a56dcff3c5af86c5248f317d15c6fe650+\\",
+                                    'username': 'WTWADMIN',
+                                    'password': 'WTW666',
+                                    'retype': 'WTW666',
+                                    'createreturnurl': "https://en.wikipedia.org",
+                                    'format': "json"
+                            },
+                            success: function(result) {
+                              console.log(result)                            
+                            },
                         }
+                        );
+                    }
+                    function wikiLogin()
+                    {
+                        $.ajax(
+                        {
+                            method: "POST",
+                            url: "https://mediawiki.org/w/api.php",
+                            data: {'action': "login",
+                                    'logintoken': "975c2c751c9420816c2d6246ad7d91075c6fe33b+\\",
+                                    'username': 'WTWADMIN',
+                                    'password': 'WTW666',
+                                    'retype': 'WTW666',
+                                    'loginreturnurl': "https://en.wikipedia.org",
+                                    'format': "json"
+                            },
+                            success: function(result) {
+                              console.log(result)                            
+                            },
+                        }
+                        );
+                    }
 		</script>
         </body>
 
-    </html>
-
-
-        
+    </html>        
     <!--
         https://en.wikipedia.org/w/api.php?action=query&meta=tokens&format=json&type=login
     {
@@ -105,9 +147,7 @@
             }
             }   
     }
-
     https://en.wikipedia.org/w/api.php?action=login&createreturnurl=http://example.com/&createtoken=29590a3037d325be70b93fb8258ed29257448cfb%2B%5C&username=zane&password=password&retype=password&email=zane@example.com&format=json
-
         https://www.myapifilms.com/imdb/idIMDB?title=matrix&origin=*&token=bc800232-87a2-4a22-998a-f370572f4ae0
         https://en.wikipedia.org/w/api.php?action=query&prop=extracts&format=json&exintro=&origin=*&titles=
          
