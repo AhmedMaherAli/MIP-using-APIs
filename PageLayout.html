@@ -7,6 +7,48 @@
         </head>
         <body >
             <div class="header">
+                    <h3 style="color: #B50D58">Welcome at WTW?! </h3>               
+            </div> 
+            <div class="container">
+                <form id="frm1" action="PageLayout.html">
+                    <p>Enter the movie name</p>
+                    <input type="text" name="movie_name" id="SearchInput">
+                </form> 
+                <button onclick="GetMovieName();">Search</button><br/>
+                <img src="" id="Mpstr">
+                <div id="MovieInfo">
+                    <p id="Plot"></p>
+                    <p id="Year"></p>
+                    <p id="MovieRate"></p>
+                    <p id="RunTime"></p>
+                </div>
+                <p id="info" class="WikiInfo"></p>
+                <div id="CF" class="CFInfo">
+                    <p>If you are a codeforces contestant let us know about you .. Please enter your handel :))</p>
+                    <input type="text" id="CFH">
+                    <button onclick="GetCFInfo();">Go</button><br/>
+                    <p id="H"></p>
+                    <p id="Rt"></p>
+                    <p id="Rk"></p>
+                    <p id="Nf"></p>
+                    <p id="C"></p>
+                    <p id="Mrt"></p>  
+                    <p id="imgs"></p>
+                    <img id="img1" src="">
+                    <img id="img2" src="">
+                    <img id="img3" src="">  
+                </div>
+            </div>
+        </body>
+<!DOCTYPE html>
+    <html>
+        <head>
+            <meta charset="utf-8">
+            <title>Moveis Reviews</title>
+            <link rel="stylesheet" href="Style.css"/>
+        </head>
+        <body >
+            <div class="header">
                     <h3 style="color: #B50D58">Welcome at WTW?! </h3>
                 
             </div> 
@@ -40,6 +82,51 @@
                     <img id="img3" src="">  
                 </div>
             </div>
-        </body>
 
+	
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+                <script>
+
+		function CreateWikipidiaAccount()
+                        {
+                            $.ajax(
+                            {
+                                method: "POST",
+                                url: "https://mediawiki.org/w/api.php",
+                                data: {'action': "createaccount",
+                                        'createtoken': "49a82f8a56dcff3c5af86c5248f317d15c6fe650+\\",
+                                        'username': 'WTWADMIN',
+                                        'password': 'WTW666',
+                                        'retype': 'WTW666',
+                                        'createreturnurl': "https://en.wikipedia.org",
+                                        'format': "json"
+                                },
+                                success: function(result) {
+                                  console.log(result)                            
+                                },
+                            }
+                            );
+                        }
+                        function CreateWikipidiaAccount()
+                        {
+                            $.ajax(
+                            {
+                                method: "POST",
+                                url: "https://mediawiki.org/w/api.php",
+                                data: {'action': "createaccount",
+                                        'logintoken': "975c2c751c9420816c2d6246ad7d91075c6fe33b+\\",
+                                        'username': 'WTWADMIN',
+                                        'password': 'WTW666',
+                                        'retype': 'WTW666',
+                                        'loginreturnurl': "https://en.wikipedia.org",
+                                        'format': "json"
+                                },
+                                success: function(result) {
+                                  console.log(result)                            
+                                },
+                            }
+                            );
+                        }
+		</script>
+        </body>
     </html>
