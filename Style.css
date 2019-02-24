@@ -1,25 +1,46 @@
 .container{
     
     text-align:left;
+    margin-top:5%;
+    margin-left:5%;
+    margin-right:5%;
+    font-weight: 300;
 }
 .header{
-    
+
+    border: 2px solid black;
+    border-radius:20px;
     text-align:center;
+    background-color: #37041B;        
+    font-weight: 300;
 }
 .container h3{
+    font-weight: normal;
     color: black;
+    text-decoration: underline;
 }
 img
 {
+    border: 2px solid black;
+    border-radius:20px;  
     float: left;
 }
 .container h4{
     color: #062272;
 }
 #MovieInfo{
+
+    border: 2px solid black;
+    border-radius:20px;
+    width:26%;
+    height: 500px;
     margin-left:76%;
 }
- 
+
+p{
+    color: yellowgreen;
+}
+
 .WikiInfo{
     margin-top:20%;
     margin-bottom: 20%;
