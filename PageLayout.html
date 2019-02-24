@@ -3,49 +3,7 @@
         <head>
             <meta charset="utf-8">
             <title>Moveis Reviews</title>
-            <link rel="stylesheet" href="Style.css"/>
-        </head>
-        <body >
-            <div class="header">
-                    <h3 style="color: #B50D58">Welcome at WTW?! </h3>               
-            </div> 
-            <div class="container">
-                <form id="frm1" action="PageLayout.html">
-                    <p>Enter the movie name</p>
-                    <input type="text" name="movie_name" id="SearchInput">
-                </form> 
-                <button onclick="GetMovieName();">Search</button><br/>
-                <img src="" id="Mpstr">
-                <div id="MovieInfo">
-                    <p id="Plot"></p>
-                    <p id="Year"></p>
-                    <p id="MovieRate"></p>
-                    <p id="RunTime"></p>
-                </div>
-                <p id="info" class="WikiInfo"></p>
-                <div id="CF" class="CFInfo">
-                    <p>If you are a codeforces contestant let us know about you .. Please enter your handel :))</p>
-                    <input type="text" id="CFH">
-                    <button onclick="GetCFInfo();">Go</button><br/>
-                    <p id="H"></p>
-                    <p id="Rt"></p>
-                    <p id="Rk"></p>
-                    <p id="Nf"></p>
-                    <p id="C"></p>
-                    <p id="Mrt"></p>  
-                    <p id="imgs"></p>
-                    <img id="img1" src="">
-                    <img id="img2" src="">
-                    <img id="img3" src="">  
-                </div>
-            </div>
-        </body>
-<!DOCTYPE html>
-    <html>
-        <head>
-            <meta charset="utf-8">
-            <title>Moveis Reviews</title>
-            <link rel="stylesheet" href="Style.css"/>
+            <<link rel="stylesheet" href="Style.css"/>
         </head>
         <body >
             <div class="header">
@@ -54,36 +12,38 @@
             </div> 
             <div class="container">
                 <form id="frm1" action="PageLayout.html">
-                    <p>Enter the movie name</p>
+                    <p>Enter the movie name</P  >
                     <input type="text" name="movie_name" id="SearchInput">
-                </form> 
-                <button onclick="GetMovieName();">Search</button><br/>
-                <img src="" id="Mpstr">
-                <div id="MovieInfo">
+                  </form> 
+                  <button onclick="GetMovieName();">Search</button>
+                  <br/>
+                  <img src="" id="Mpstr">
+                  <div id="MovieInfo">
                     <p id="Plot"></p>
                     <p id="Year"></p>
                     <p id="MovieRate"></p>
                     <p id="RunTime"></p>
-                </div>
-                <p id="info" class="WikiInfo"></p>
-                <div id="CF" class="CFInfo">
-                    <p>If you are a codeforces contestant let us know about you .. Please enter your handel :))</p>
-                    <input type="text" id="CFH">
-                    <button onclick="GetCFInfo();">Go</button><br/>
-                    <p id="H"></p>
-                    <p id="Rt"></p>
-                    <p id="Rk"></p>
-                    <p id="Nf"></p>
-                    <p id="C"></p>
-                    <p id="Mrt"></p>  
-                    <p id="imgs"></p>
-                    <img id="img1" src="">
-                    <img id="img2" src="">
-                    <img id="img3" src="">  
-                </div>
+                  </div>
+                  <p id="info" class="WikiInfo"></p>
+                  <div id="CF" class="CFInfo">
+                      <p>If you are a codeforces contestant let us know about you .. Please enter your handel :))</p>
+                      <input type="text" id="CFH">
+                      <button onclick="GetCFInfo();">Go</button><br/>
+                      <p id="H"></p>
+                      <p id="Rt"></p>
+                      <p id="Rk"></p>
+                      <p id="Nf"></p>
+                      <p id="C"></p>
+                      <p id="Mrt"></p>
+                      
+                      <p id="imgs"></p>
+                      <img id="img1" src="">
+                      <img id="img2" src="">
+                      <img id="img3" src="">
+                      
+                  </div>
             </div>
 
-	
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
                 <script>
 
@@ -129,4 +89,27 @@
                         }
 		</script>
         </body>
+
     </html>
+
+
+        
+    <!--
+        https://en.wikipedia.org/w/api.php?action=query&meta=tokens&format=json&type=login
+    {
+    "batchcomplete": "",
+            "query": {
+            "tokens": {
+            "logintoken": "975c2c751c9420816c2d6246ad7d91075c6fe33b+\\"
+            "createaccount":"49a82f8a56dcff3c5af86c5248f317d15c6fe650+\\"
+            }
+            }   
+    }
+
+    https://en.wikipedia.org/w/api.php?action=login&createreturnurl=http://example.com/&createtoken=29590a3037d325be70b93fb8258ed29257448cfb%2B%5C&username=zane&password=password&retype=password&email=zane@example.com&format=json
+
+        https://www.myapifilms.com/imdb/idIMDB?title=matrix&origin=*&token=bc800232-87a2-4a22-998a-f370572f4ae0
+        https://en.wikipedia.org/w/api.php?action=query&prop=extracts&format=json&exintro=&origin=*&titles=
+         
+                                
+        -->
