@@ -56,7 +56,31 @@ button{
     cursor: pointer;
     border: 2px solid black;
     margin-left:23%;
+    transition: 0.25s ease-in-out;
+    width: 200px;
+    height: 35px;
+    font-size: 20px;
+    color: white;
+    background-color: #A04000;
+    outline: none;
+}
+button:hover{
+    background-color: black;
+}
+.CFInfo img{
+    width: 1000px;
+    height: 800px;
+    
+    border: 2px solid black;
+    border-radius:20px;
+}
+.CFInfo p{
+    
+    color: yellowgreen;
 }
 body {
-    background-size: 1200px 800px;
+      background-image: url("bg3.jpg");
+    /*background-repeat: no-repeat;*/
+    /*background-attachment: fixed;*/
+      background-size: 1200px 800px;
   }
