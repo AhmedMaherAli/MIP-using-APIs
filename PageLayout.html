@@ -43,99 +43,138 @@
                       
                   </div>
             </div>
-
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-            <script>
-                    var x = document.getElementById("frm1");
-                    var text = "";
-                    function GetMovieName() {
-                            var i;
-                            for (i = 0; i < x.length ;i++) 
-                            {
-                                text += x.elements[i].value;
-                            }
-                            document.getElementById("SearchInput").value="";
-                            console.log(text);
-                            apicall();
-                    }
-                    function apicall(){
-                            $.getJSON("http://www.omdbapi.com/?apikey=2cb2be10&t="+ encodeURI(text)).then(function(response){
-                            var image=response.Poster;
-                            var plot=response.Plot;
-                            var rate=response.imdbRating;
-                            var year=response.Year;
-                            var movieRunTime=response.Runtime;
-                            document.getElementById("Plot").innerHTML="<h4>Plot:</h4>"+plot;
-                            document.getElementById("MovieRate").innerHTML="<h4>MovieRate:</h4>"+rate;
-                            document.getElementById("Year").innerHTML="<h4>Year:</h4>"+year;
-                            document.getElementById("RunTime").innerHTML="<h4>RunTime:</h4>"+movieRunTime;
-                            if(image!=="N/A")
-                            {
-                                $('#Mpstr').attr('src',image);
-                            }
-                            else
-                            {
-                                $.getJSON("https://www.myapifilms.com/imdb/idIMDB?origin=*&token=bc800232-87a2-4a22-998a-f370572f4ae0http&title="+ encodeURI(text)).then(function(tempresponse){
-                                image=tempresponse.urlPoster;
-                                });
+            
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+                <script>
+                        var x = document.getElementById("frm1");
+                        var text = "";
+                        function GetMovieName() {
+                                var i;
+                                for (i = 0; i < x.length ;i++) 
+                                {
+                                    text += x.elements[i].value;
+                                }
+                                document.getElementById("SearchInput").value="";
+                                console.log(text);
+                                apicall();
+                        }
+                        function apicall(){
+                                $.getJSON("http://www.omdbapi.com/?apikey=2cb2be10&t="+ encodeURI(text)).then(function(response){
+                                var image=response.Poster;
+                                var plot=response.Plot;
+                                var rate=response.imdbRating;
+                                var year=response.Year;
+                                var movieRunTime=response.Runtime;
+                                document.getElementById("Plot").innerHTML="<h4>Plot:</h4>"+plot;
+                                document.getElementById("MovieRate").innerHTML="<h4>MovieRate:</h4>"+rate;
+                                document.getElementById("Year").innerHTML="<h4>Year:</h4>"+year;
+                                document.getElementById("RunTime").innerHTML="<h4>RunTime:</h4>"+movieRunTime;
                                 if(image!=="N/A")
                                 {
-                                     $('#Mpstr').attr('src',image);
+                                    $('#Mpstr').attr('src',image);
                                 }
+                                else
+                                {
+                                    $.getJSON("https://www.myapifilms.com/imdb/idIMDB?origin=*&token=bc800232-87a2-4a22-998a-f370572f4ae0http&title="+ encodeURI(text)).then(function(tempresponse){
+                                    image=tempresponse.urlPoster;
+                                    });
+                                    if(image!=="N/A")
+                                    {
+                                         $('#Mpstr').attr('src',image);
+                                    }
+                                }
+                                });
+                            $.getJSON("https://en.wikipedia.org/w/api.php?action=query&prop=extracts&format=json&exintro=&origin=*&titles="+ encodeURI(text)).then(function(response){
+                                 var pageid = Object.keys(response.query.pages)[0];
+                                console.log(response.query.pages[pageid].extract);
+                                    var t=response.query.pages[pageid].extract;
+                                document.getElementById("info").innerHTML=t;
+                                });
+                            
+                         }
+                        function CreateWikipidiaAccount()
+                        {
+                            $.ajax(
+                            {
+                                method: "POST",
+                                url: "https://mediawiki.org/w/api.php",
+                                data: {'action': "createaccount",
+                                        'createtoken': "49a82f8a56dcff3c5af86c5248f317d15c6fe650+\\",
+                                        'username': 'WTWADMIN',
+                                        'password': 'WTW666',
+                                        'retype': 'WTW666',
+                                        'createreturnurl': "https://en.wikipedia.org",
+                                        'format': "json"
+                                },
+                                success: function(result) {
+                                  console.log(result)                            
+                                },
                             }
-                            });
-                        $.getJSON("https://en.wikipedia.org/w/api.php?action=query&prop=extracts&format=json&exintro=&origin=*&titles="+ encodeURI(text)).then(function(response){
-                             var pageid = Object.keys(response.query.pages)[0];
-                            console.log(response.query.pages[pageid].extract);
-                                var t=response.query.pages[pageid].extract;
-                            document.getElementById("info").innerHTML=t;
-                            });
-                        
-                     }
-                    function CreateWikipidiaAccount()
-                    {
-                        $.ajax(
-                        {
-                            method: "POST",
-                            url: "https://mediawiki.org/w/api.php",
-                            data: {'action': "createaccount",
-                                    'createtoken': "49a82f8a56dcff3c5af86c5248f317d15c6fe650+\\",
-                                    'username': 'WTWADMIN',
-                                    'password': 'WTW666',
-                                    'retype': 'WTW666',
-                                    'createreturnurl': "https://en.wikipedia.org",
-                                    'format': "json"
-                            },
-                            success: function(result) {
-                              console.log(result)                            
-                            },
+                            );
                         }
-                        );
-                    }
-                    function wikiLogin()
-                    {
-                        $.ajax(
+                        function CreateWikipidiaAccount()
                         {
-                            method: "POST",
-                            url: "https://mediawiki.org/w/api.php",
-                            data: {'action': "login",
-                                    'logintoken': "975c2c751c9420816c2d6246ad7d91075c6fe33b+\\",
-                                    'username': 'WTWADMIN',
-                                    'password': 'WTW666',
-                                    'retype': 'WTW666',
-                                    'loginreturnurl': "https://en.wikipedia.org",
-                                    'format': "json"
-                            },
-                            success: function(result) {
-                              console.log(result)                            
-                            },
+                            $.ajax(
+                            {
+                                method: "POST",
+                                url: "https://mediawiki.org/w/api.php",
+                                data: {'action': "createaccount",
+                                        'logintoken': "975c2c751c9420816c2d6246ad7d91075c6fe33b+\\",
+                                        'username': 'WTWADMIN',
+                                        'password': 'WTW666',
+                                        'retype': 'WTW666',
+                                        'loginreturnurl': "https://en.wikipedia.org",
+                                        'format': "json"
+                                },
+                                success: function(result) {
+                                  console.log(result)                            
+                                },
+                            }
+                            );
                         }
-                        );
-                    }
-		</script>
+                        var c;
+                        function GetCFInfo()
+                        {
+                            var handle=(document.getElementById('CFH').value);
+                            $.getJSON("http://codeforces.com/api/user.info?handles="+ encodeURI(handle)).then(function(response){
+                                var country="<h4>Country </h4>"+response.result[0].country;
+                                c=response.result[0].country;
+                                console.log(c);
+                                var crate="<h4>Current rating </h4>"+response.result[0].rating;
+                                var mxrate="<h4>Max rating </h4>"+response.result[0].maxRating;
+                                var photo=encodeURI(response.result[0].avatar);
+                                var rank="<h4>Rank: </h4>"+response.result[0].rank;
+                                var freinds="<h4>Number of freinds </h4> <p style='display: inline;'>"+response.result[0].friendOfCount+"</p>";
+                                document.getElementById("H").innerHTML="<h4>Handle: </h4>"+handle;
+                                document.getElementById("Rt").innerHTML=crate;
+                                document.getElementById("Rk").innerHTML=rank;
+                                document.getElementById("Nf").innerHTML=freinds;
+                                document.getElementById("Mrt").innerHTML=mxrate;
+                                document.getElementById("C").innerHTML=country;
+                                /**
+                                if(photo!=="N/A")
+                                    {
+                                         $('#CFp').attr('src',photo);
+                                    }
+                                console.log(photo);
+                                **/
+                                document.getElementById('imgs').innerHTML="Here are some awesome photos about your country";
+                                $.getJSON("https://api.unsplash.com/search/photos?client_id=0a166a78c8f20925ff12bf58516bece905a653ca59e48188994a13ba3101bde0&fbclid=IwAR12axjA-W3SiwXoE1i_bhxgVSs4ab9pVGidwwFcGi6Skn5S0v-JXGT-CGM&query="+decodeURI(c)).then(function(Data){
+                                var x=Data.results[0].urls.regular;$('#img1').attr('src',x);
+                                var x2=Data.results[1].urls.regular;$('#img2').attr('src',x2);
+                                var x3=Data.results[2].urls.regular;$('#img3').attr('src',x3);
+                               
+                                });
+            
+                            });
+                            
+            
+                        }
+                </script>
         </body>
 
-    </html>        
+    </html>
+    
     <!--
         https://en.wikipedia.org/w/api.php?action=query&meta=tokens&format=json&type=login
     {
@@ -147,7 +186,9 @@
             }
             }   
     }
+
     https://en.wikipedia.org/w/api.php?action=login&createreturnurl=http://example.com/&createtoken=29590a3037d325be70b93fb8258ed29257448cfb%2B%5C&username=zane&password=password&retype=password&email=zane@example.com&format=json
+
         https://www.myapifilms.com/imdb/idIMDB?title=matrix&origin=*&token=bc800232-87a2-4a22-998a-f370572f4ae0
         https://en.wikipedia.org/w/api.php?action=query&prop=extracts&format=json&exintro=&origin=*&titles=
          
