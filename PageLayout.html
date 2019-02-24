@@ -7,13 +7,15 @@
         </head>
         <body >
             <div class="header">
-                    <h3></h3>
+                    <h3 style="color: #B50D58">Welcome at WTW?! </h3>
+                
             </div> 
             <div class="container">
                 <form id="frm1" action="PageLayout.html">
+                    <p>Enter the movie name</p>
                     <input type="text" name="movie_name" id="SearchInput">
                 </form> 
-                <button >Search</button><br/>
+                <button onclick="GetMovieName();">Search</button><br/>
                 <img src="" id="Mpstr">
                 <div id="MovieInfo">
                     <p id="Plot"></p>
@@ -23,14 +25,15 @@
                 </div>
                 <p id="info" class="WikiInfo"></p>
                 <div id="CF" class="CFInfo">
+                    <p>If you are a codeforces contestant let us know about you .. Please enter your handel :))</p>
                     <input type="text" id="CFH">
-                    <button>Go</button><br/>
+                    <button onclick="GetCFInfo();">Go</button><br/>
                     <p id="H"></p>
                     <p id="Rt"></p>
                     <p id="Rk"></p>
                     <p id="Nf"></p>
                     <p id="C"></p>
-                    <p id="Mrt"></p>
+                    <p id="Mrt"></p>  
                     <p id="imgs"></p>
                     <img id="img1" src="">
                     <img id="img2" src="">
