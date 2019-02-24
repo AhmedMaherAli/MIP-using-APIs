@@ -1,1 +1,41 @@
+.container{
+    
+    text-align:left;
+}
+.header{
+    
+    text-align:center;
+}
+.container h3{
+    color: black;
+}
+img
+{
+    float: left;
+}
+.container h4{
+    color: #062272;
+}
+#MovieInfo{
+    margin-left:76%;
+}
+ 
+.WikiInfo{
+    margin-top:20%;
+    margin-bottom: 20%;
+}
+input {
+    border: 2px solid black;
+    width: 54%;  
+    height: 27px;
+    float:left;
+}
 
+button{
+    cursor: pointer;
+    border: 2px solid black;
+    margin-left:23%;
+}
+body {
+    background-size: 1200px 800px;
+  }
