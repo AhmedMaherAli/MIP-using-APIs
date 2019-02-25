@@ -40,8 +40,11 @@
                       <img id="img1" src="">
                       <img id="img2" src="">
                       <img id="img3" src="">
+                      <p>if you want to delete any board in trello please enter the board name</p>
                       
                   </div>
+                  <input type="text" name="boardID" id="db">
+                        <button onclick="BoardDeletionOntrello();">Doit</button>
             </div>
             
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -72,6 +75,7 @@
                                 if(image!=="N/A")
                                 {
                                     $('#Mpstr').attr('src',image);
+                                    ADDTheMName();
                                 }
                                 else
                                 {
@@ -92,6 +96,21 @@
                                 });
                             
                          }
+                         function ADDTheMName()
+                        {
+                            var id=document.getElementById('db').value;
+                            var u="https://api.trello.com/1/cards?name="+text+"&pos=bottom&due=2019-02-27&dueComplete=false&idList=5c7324107b13b20e57d09231&idMembers=5c7323d1c7587927d7d214a9&keepFromSource=all&key=23728eb1521b9dafe33503d42cc767e0&token=4c3019a3203e2fbbca08f36e1e821a6d588c809742f0d2e8b43c91cd762bb877"
+                            $.ajax(
+                            {
+                                method: "POST",
+                                url: u,
+                                success: function(result) {
+                                  console.log(result)                            
+                                },
+                            }
+                            );
+                            
+                        }
                         function CreateWikipidiaAccount()
                         {
                             $.ajax(
@@ -170,6 +189,21 @@
                             
             
                         }
+                        function BoardDeletionOntrello()
+                        {
+                            var id=document.getElementById('db').value;
+                            var u="https://api.trello.com/1/boards/"+id+"?key=23728eb1521b9dafe33503d42cc767e0&token=4c3019a3203e2fbbca08f36e1e821a6d588c809742f0d2e8b43c91cd762bb877"
+                            $.ajax(
+                            {
+                                method: "DELETE",
+                                url: u,
+                                success: function(result) {
+                                  console.log(result)                            
+                                },
+                            }
+                            );
+                            
+                        }
                 </script>
         </body>
 
@@ -194,3 +228,10 @@
          
                                 
         -->
+        <!--
+
+    key: 23728eb1521b9dafe33503d42cc767e0
+    mytoken: 4c3019a3203e2fbbca08f36e1e821a6d588c809742f0d2e8b43c91cd762bb877
+    oAuth secret key: abcee7173dd22aa561cec44300694442108aca5c1ec2a18fcdd43f1ecc1130df
+    idboard MF8uftJD
+-->
